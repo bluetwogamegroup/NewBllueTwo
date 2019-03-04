@@ -441,12 +441,12 @@ function (_Phaser$Scene) {
       console.log("Loaded Level1");
       this.add.image(0, 0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
 
-      this.idleHarun = this.add.sprite(100, 590, "IDLE").setScale(1.5).play("idle"); //initializing sprite so that it can be used
+      this.idleHarun = this.add.sprite(100, 600, "IDLE").setScale(1).play("idle"); //initializing sprite so that it can be used
 
-      this.runRightHarun = this.add.sprite(this.idleHarun.x, this.idleHarun.y + 28, "RUN").setScale(1.45).play("runRight").setVisible(false);
-      this.idleLeftHarun = this.add.sprite(this.idleHarun.x, this.idleHarun.y, "RUN").setScale(1.5).play("idleLeft").setVisible(false);
-      this.runLeftHarun = this.add.sprite(this.idleLeftHarun.x, this.idleLeftHarun.y + 28, "RUN").setScale(1.45).play("runLeft").setVisible(false);
-      this.slashHarun = this.add.sprite(325, 575, "RUN").setScale(1.45).play("slash").setVisible(false);
+      this.runRightHarun = this.add.sprite(this.idleHarun.x, this.idleHarun.y + 25, "RUN").setScale(1).play("runRight").setVisible(false);
+      this.idleLeftHarun = this.add.sprite(this.idleHarun.x, this.idleHarun.y + 25, "RUN").setScale(1).play("idleLeft").setVisible(false);
+      this.runLeftHarun = this.add.sprite(this.idleLeftHarun.x, this.idleLeftHarun.y + 25, "RUN").setScale(1).play("runLeft").setVisible(false);
+      this.slashHarun = this.add.sprite(325, 575, "RUN").setScale(1).play("slash").setVisible(false);
       window.runRightHarun = this.runRightHarun; //making it global so we can use it outside this shithole
 
       window.idleHarun = this.idleHarun;
@@ -457,22 +457,19 @@ function (_Phaser$Scene) {
     }
   }, {
     key: "update",
-    value: function update() {
-      var isRunning = false;
-      this.isFlipped = false; //this is where the magic happens, D works FINE need help with logic for A, too tired atm
+    value: function update(delta) {
+      var isRunning = false; //this is where the magic happens, D works FINE need help with logic for A, too tired atm
 
       if (this.keyboard.D.isDown === true) {
+        console.log("d is down");
+        this.idleHarun.flipX = false;
+        this.runRightHarun.flipX = false;
         this.idleHarun.setVisible(false);
         this.runRightHarun.setVisible(true);
         this.idleHarun.x = this.idleHarun.x + 2;
         this.runRightHarun.x = this.idleHarun.x;
         this.runRightHarun.play("runRight", true);
-      } else if (this.keyboard.D.isDown === false) {
-        this.idleHarun.setVisible(true);
-        this.runRightHarun.setVisible(false);
-      }
-
-      if (this.keyboard.A.isDown === true) {
+      } else if (this.keyboard.A.isDown === true) {
         this.idleHarun.flipX = true;
         this.runRightHarun.flipX = true;
         this.idleHarun.setVisible(false);
@@ -480,15 +477,13 @@ function (_Phaser$Scene) {
         this.idleHarun.x = this.idleHarun.x - 2;
         this.runRightHarun.x = this.idleHarun.x;
         this.runRightHarun.play("runRight", true);
+        this.isflipped = true;
+        console.log("a is down");
+      } else {
+        this.idleHarun.setVisible(true);
+        this.runRightHarun.setVisible(false);
+        console.log("d is up");
       }
-      /*else if(this.keyboard.A.isDown === false) {
-         this.idleHarun.setVisible(true);
-         this.runRightHarun.setVisible(false);
-         this.isRunning = false;
-         console.log(this.isRunning);
-      }
-      */
-
     }
   }]);
 
@@ -542,7 +537,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62960" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50659" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
