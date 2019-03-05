@@ -383,11 +383,15 @@ function (_Phaser$Scene) {
   _inherits(Level1, _Phaser$Scene);
 
   function Level1() {
+    var _this;
+
     _classCallCheck(this, Level1);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Level1).call(this, {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Level1).call(this, {
       key: _CST.CST.SCENES.LEVEL1
     }));
+    var Harun;
+    return _this;
   } //preloading all the scenes cuz its a level and we dont wanna wait for enginge to grab them
 
 
@@ -439,9 +443,9 @@ function (_Phaser$Scene) {
     key: "create",
     value: function create() {
       console.log("Loaded Level1");
-      this.add.image(0, 0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
+      this.world = this.add.image(0, 0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
 
-      this.idleHarun = this.add.sprite(100, 600, "IDLE").setScale(1).play("idle"); //initializing sprite so that it can be used
+      this.idleHarun = this.add.sprite(200, 600, "IDLE").setScale(1).play("idle"); //initializing sprite so that it can be used
 
       this.runRightHarun = this.add.sprite(this.idleHarun.x, this.idleHarun.y + 25, "RUN").setScale(1).play("runRight").setVisible(false);
       this.idleLeftHarun = this.add.sprite(this.idleHarun.x, this.idleHarun.y + 25, "RUN").setScale(1).play("idleLeft").setVisible(false);
@@ -456,7 +460,7 @@ function (_Phaser$Scene) {
       this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
       this.cameras.main.startFollow(this.idleHarun); //THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
 
-      this.cameras.main.setFollowOffset(-350, 200);
+      this.cameras.main.setFollowOffset(-300, 200);
     }
   }, {
     key: "update",
@@ -518,9 +522,12 @@ var game = new Phaser.Game({
     pixelArt: true
   },
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
-      debug: true
+      gravity: {
+        y: 300
+      },
+      debug: false
     }
   }
 });
@@ -551,7 +558,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58478" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65315" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

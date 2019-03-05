@@ -16,9 +16,10 @@ let game = new Phaser.Game({
         pixelArt: true
     },
     physics: {
-        default: "arcade",
+        default: 'arcade',
         arcade: {
-            debug: true
+            gravity: { y: 300 },
+            debug: false
         }
     }
 });

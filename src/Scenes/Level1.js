@@ -6,6 +6,7 @@ export class Level1 extends Phaser.Scene{
         super({
             key: CST.SCENES.LEVEL1
         })
+        var Harun;
     }
 
     //preloading all the scenes cuz its a level and we dont wanna wait for enginge to grab them
@@ -58,9 +59,9 @@ export class Level1 extends Phaser.Scene{
     }
     create() {
         console.log("Loaded Level1");
-        this.add.image(0,0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
+        this.world = this.add.image(0,0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
         
-        this.idleHarun = this.add.sprite(100,600, "IDLE").setScale(1).play("idle"); //initializing sprite so that it can be used
+        this.idleHarun = this.add.sprite(200,600, "IDLE").setScale(1).play("idle"); //initializing sprite so that it can be used
 
         this.runRightHarun = this.add.sprite(this.idleHarun.x,this.idleHarun.y  + 25, "RUN").setScale(1).play("runRight").setVisible(false);
 
@@ -70,11 +71,8 @@ export class Level1 extends Phaser.Scene{
 
         this.slashHarun = this.add.sprite(325,575, "RUN").setScale(1).play("slash").setVisible(false);
 
-
-
         window.runRightHarun = this.runRightHarun; //making it global so we can use it outside this shithole
         window.idleHarun = this.idleHarun;
-        
         
         
         window.idleLeftHarun = this.idleLeftHarun;
@@ -85,7 +83,11 @@ export class Level1 extends Phaser.Scene{
         this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
 
         this.cameras.main.startFollow(this.idleHarun);//THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
-        this.cameras.main.setFollowOffset(-350,200);
+        this.cameras.main.setFollowOffset(-300,200);
+        
+
+
+
         
     }
 update(delta) {
