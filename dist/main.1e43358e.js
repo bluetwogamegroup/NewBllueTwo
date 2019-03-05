@@ -455,6 +455,8 @@ function (_Phaser$Scene) {
       window.slashHarun = this.slashHarun;
       this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
       this.cameras.main.startFollow(this.idleHarun); //THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
+
+      this.cameras.main.setFollowOffset(-350, 200);
     }
   }, {
     key: "update",
@@ -549,7 +551,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55491" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58478" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
