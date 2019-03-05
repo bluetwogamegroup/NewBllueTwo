@@ -1,5 +1,6 @@
 import { CST } from "../CST";
 import { LoadScene } from "./LoadScene";
+import { createPartiallyEmittedExpression } from "typescript";
 export class Level1 extends Phaser.Scene{
     
     constructor() {
@@ -33,11 +34,12 @@ export class Level1 extends Phaser.Scene{
             key: "runRight", 
             frameRate: 7, 
             repeat: -1,
-            frames: this.anims.generateFrameNumbers("RUN", {
-                frames: [2,3,4,5,6,7]
+            frames: this.anims.generateFrameNumbers("IDLE", {
+                //frames: [2,3,4,5,6,7]
+                frames: [0,1]
             })
         });
-
+        
         this.anims.create({
             key: "runLeft", 
             frameRate: 7, 
@@ -55,7 +57,8 @@ export class Level1 extends Phaser.Scene{
                 frames: [0,1,2,3,4,5,6,7,8]
             })
         });
-
+        
+        this.load.image("ground",  "./assets/ground.png");
     }
     create() {
         
@@ -88,6 +91,7 @@ export class Level1 extends Phaser.Scene{
         window.slashHarun = this.slashHarun; */
 
         this.harun = this.physics.add.sprite(200,600, "idle");
+        
         this.harun.setCollideWorldBounds(true);
         
 
@@ -97,6 +101,13 @@ export class Level1 extends Phaser.Scene{
         this.cameras.main.startFollow(this.harun);//THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
         this.cameras.main.setFollowOffset(-300,200);
        
+        var platforms = this.physics.add.staticGroup();
+    
+        platforms.create(200, 680, "ground").setScale(40).refreshBody();
+        platforms.create(600, 400, "ground");
+        platforms.create(50, 250, "ground");
+
+        this.physics.add.collider(this.harun, platforms);
     }
 update(delta) {
         
@@ -120,7 +131,8 @@ update(delta) {
 
             this.harun.setVelocityX(160);
             this.harun.flipX = false;
-            this.harun.setY = this.harun.y + 25;
+            //this.harun.setY(625);
+            
             this.harun.anims.play("runRight", true);
             
             
@@ -142,19 +154,26 @@ update(delta) {
             console.log("a is down");
             this.harun.setVelocityX(-160);
             this.harun.flipX = true;
-            this.harun.setY = this.harun.y + 25;
+            //this.harun.setY(625);
             this.harun.anims.play("runRight", true);
-        
+            
             
         
 
+       } else if(this.keyboard.W.isDown && this.harun.body.touching.down){
+        console.log("W was pushed");
+        this.harun.setVelocityY(-400);
+    
+       
        }else {
         
         this.harun.setVelocityX(0);
         this.harun.anims.play("idle", true);
-        
+        //this.harun.setY(600);
         console.log("Im Idle");
        }
+
+ 
        
     }
 
