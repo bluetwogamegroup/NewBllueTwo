@@ -90,23 +90,32 @@ export class Level1 extends Phaser.Scene{
         window.runLeftHarun = this.runLeftHarun;
         window.slashHarun = this.slashHarun; */
 
-        this.harun = this.physics.add.sprite(200,600, "idle");
+        this.harun = this.physics.add.sprite(200,400, "idle");
         
         this.harun.setCollideWorldBounds(true);
         
 
 
         this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
+        this.cameras.main.setBounds(0,0,2400,800);
+        this.physics.world.setBounds(0,0,2400,800);
 
         this.cameras.main.startFollow(this.harun);//THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
         this.cameras.main.setFollowOffset(-300,200);
        
         var platforms = this.physics.add.staticGroup();
     
-        platforms.create(200, 680, "ground").setScale(40).refreshBody();
+        platforms.create(200, 680, "ground").setScale(2400,2).refreshBody();
         platforms.create(600, 400, "ground");
         platforms.create(50, 250, "ground");
 
+
+        //  This adjusts the collision body size to be a 100x50 box.
+        //  50, 25 is the X and Y offset of the newly sized box.
+        
+       
+        this.harun.body.setSize(45,90,0,0);
+        this.harun.setBounce(0.2);
         this.physics.add.collider(this.harun, platforms);
     }
 update(delta) {
@@ -160,12 +169,7 @@ update(delta) {
             
         
 
-       } else if(this.keyboard.W.isDown && this.harun.body.touching.down){
-        console.log("W was pushed");
-        this.harun.setVelocityY(-400);
-    
-       
-       }else {
+        }else {
         
         this.harun.setVelocityX(0);
         this.harun.anims.play("idle", true);
@@ -173,6 +177,12 @@ update(delta) {
         console.log("Im Idle");
        }
 
+      if(this.keyboard.W.isDown && this.harun.body.touching.down){
+        console.log("W was pushed");
+        this.harun.setVelocityY(-400);
+    
+      }
+       
  
        
     }
