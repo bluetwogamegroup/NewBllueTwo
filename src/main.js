@@ -1,5 +1,5 @@
 /** @type {import ("../typings/phaser")} */
-//import {LoadScene} from "./Scenes/LoadScene";
+import {LoadScene} from "./Scenes/LoadScene";
 import {MenuScene} from "./Scenes/MenuScene";
 import { Level1 } from "./Scenes/Level1";
 let game = new Phaser.Game({

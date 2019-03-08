@@ -69,28 +69,7 @@ export class Level1 extends Phaser.Scene{
 
         this.add.image(0,0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
         
-        /* this.harun = this.physics.add.sprite(200,600, "IDLE").setScale(1).play("idle"); //initializing sprite so that it can be used
-
-        this.runRightHarun = this.physics.add.sprite(this.harun.x,this.harun.y  + 25, "RUN").setScale(1).play("runRight").setVisible(false);
-
-        this.idleLeftHarun = this.physics.add.sprite(this.harun.x,this.harun.y + 25, "RUN").setScale(1).play("idleLeft").setVisible(false);
-
-        this.runLeftHarun = this.physics.add.sprite(this.idleLeftHarun.x,this.idleLeftHarun.y +25, "RUN").setScale(1).play("runLeft").setVisible(false);
-
-        this.slashHarun = this.physics.add.sprite(325,575, "RUN").setScale(1).play("slash").setVisible(false);
-
-
-
-        window.runRightHarun = this.runRightHarun; //making it global so we can use it outside this shithole
-        window.harun = this.harun;
-        
-        
-        
-        window.idleLeftHarun = this.idleLeftHarun;
-        window.runLeftHarun = this.runLeftHarun;
-        window.slashHarun = this.slashHarun; */
-
-        this.harun = this.physics.add.sprite(200,400, "idle");
+        this.harun = this.physics.add.sprite(750,600, "idle");
         
         this.harun.setCollideWorldBounds(true);
         
@@ -105,9 +84,71 @@ export class Level1 extends Phaser.Scene{
        
         var platforms = this.physics.add.staticGroup();
     
-        platforms.create(200, 680, "ground").setScale(2400,2).refreshBody();
-        platforms.create(600, 400, "ground");
+        platforms.create(200,652, "ground").setScale(700,4).refreshBody();
+       // platforms.create(600, 400, "ground");
         platforms.create(50, 250, "ground");
+        //adding new platforms~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LEFT TREE SIDE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        platforms.create(110,409, 'ground').setScale(20,4).refreshBody();//done need fine tunning
+        platforms.create(290,605, 'ground').setScale(55,5).refreshBody();//done need fine tunning
+      //  platforms.create(380,550, 'ground').setScale(20,4).refreshBody();//done need fine tunning
+        platforms.create(322,500, 'ground').setScale(28,4).refreshBody();//done 
+        platforms.create(240,480, 'ground').setScale(26,6).refreshBody();//done 
+        platforms.create(134,460, 'ground').setScale(47,4).refreshBody();//done 
+        platforms.create(110,300, 'ground').setScale(20,4).refreshBody();//done 
+        platforms.create(110,320, 'ground').setScale(20,4).refreshBody();//done 
+        platforms.create(110,350, 'ground').setScale(20,4).refreshBody();//done 
+        platforms.create(110,385, 'ground').setScale(20,4).refreshBody();//
+        platforms.create(10,407, 'ground').setScale(35,4).refreshBody();//
+        platforms.create(10,350, 'ground').setScale(35,4).refreshBody();//
+        platforms.create(10,285, 'ground').setScale(35,4).refreshBody();//
+        platforms.create(160,245, 'ground').setScale(15,4).refreshBody();//done need fine tunning
+        platforms.create(435,230, 'ground').setScale(260,30).refreshBody();//done need fine tunning
+       // platforms.create(530,455, 'ground').setScale(1,195).refreshBody();//done TREE LEFT SIDE LONG
+        platforms.create(738,184, 'ground').setScale(48,12).refreshBody();//done 
+        platforms.create(788,161, 'ground').setScale(12,11).refreshBody();//done 
+        platforms.create(810,142, 'ground').setScale(13,11).refreshBody();//done 
+        platforms.create(651,283, 'ground').setScale(1,20).refreshBody();//done need fine tunningd
+        platforms.create(710,320, 'ground').setScale(65,10).refreshBody();
+        platforms.create(651,348, 'ground').setScale(1,15).refreshBody();//vertical platform on the right side
+        platforms.create(792,297, 'ground').setScale(20,6).refreshBody();
+        platforms.create(852,285, 'ground').setScale(40,8).refreshBody();
+        //platforms.create(543,507, 'ground').setScale(1,140).refreshBody();
+       // platforms.create(645,518, 'ground').setScale(3,75).refreshBody();
+        platforms.create(670,425, 'ground').setScale(60,4).refreshBody();
+        platforms.create(767,407, 'ground').setScale(35,4).refreshBody();
+        platforms.create(825,403, 'ground').setScale(32,4).refreshBody();
+        platforms.create(893,383, 'ground').setScale(32,4).refreshBody();
+        platforms.create(972,367, 'ground').setScale(45,4).refreshBody();
+        //----------------------------------------TREE DONE---------------------------------------------------------------------------
+
+        //---------------------------------------UNDER TOWER PART---------------------------------------------------------------------
+        platforms.create(932,676, 'ground').setScale(45,4).refreshBody();
+        platforms.create(985,703, 'ground').setScale(45,4).refreshBody();
+        platforms.create(1040,741, 'ground').setScale(45,10).refreshBody();
+        platforms.create(1116,765, 'ground').setScale(45,10).refreshBody();
+        platforms.create(1205,745, 'ground').setScale(45,25).refreshBody();
+        platforms.create(1140,656, 'ground').setScale(30,7).refreshBody();
+        platforms.create(2046,685, 'ground').setScale(800,35).refreshBody();
+        platforms.create(1235,700, 'ground').setScale(15,6).refreshBody();
+        platforms.create(1139,423, 'ground').setScale(4,227).refreshBody();
+        platforms.create(1263,423, 'ground').setScale(4,227).refreshBody();
+
+        //--------------------------------------TOWER---------------------------------------------------------------------------------
+        platforms.create(1140,200, 'ground').setScale(43,10).refreshBody();
+        platforms.create(1269,200, 'ground').setScale(40,10).refreshBody();
+        platforms.create(1235,584, 'ground').setScale(25,10).refreshBody();
+        platforms.create(1235,430, 'ground').setScale(25,7).refreshBody();
+        platforms.create(1200,380, 'ground').setScale(60,7).refreshBody();
+        platforms.create(1200,315, 'ground').setScale(60,7).refreshBody();
+        platforms.create(1200,260, 'ground').setScale(60,7).refreshBody();
+        platforms.create(1175,496, 'ground').setScale(28,10).refreshBody();//Done
+
+
+
+
+
+
+
 
 
         //  This adjusts the collision body size to be a 100x50 box.
@@ -118,7 +159,7 @@ export class Level1 extends Phaser.Scene{
         this.harun.setBounce(0.2);
         this.physics.add.collider(this.harun, platforms);
     }
-update(delta) {
+    update(delta) {
         
         var isRunning = false;
         
@@ -127,16 +168,7 @@ update(delta) {
             
             console.log("d is down");
 
-            /* this.harun.flipX = false;
-            this.runRightHarun.flipX = false;
 
-            this.harun.setVisible(false);
-            this.runRightHarun.setVisible(true);
-
-            this.harun.x = this.harun.x + 2;
-            this.runRightHarun.x = this.harun.x;
-
-            this.runRightHarun.play("runRight", true); */
 
             this.harun.setVelocityX(160);
             this.harun.flipX = false;
@@ -149,37 +181,24 @@ update(delta) {
  
         } 
         else if (this.keyboard.A.isDown === true) {
-            /* this.harun.flipX = true;
-            this.runRightHarun.flipX = true;
 
-            this.harun.setVisible(false);
-            this.runRightHarun.setVisible(true);
-
-            this.harun.x = this.harun.x - 2;
-            this.runRightHarun.x = this.harun.x;
-
-            this.runRightHarun.play("runRight", true);
-            this.isflipped = true; */
             console.log("a is down");
             this.harun.setVelocityX(-160);
             this.harun.flipX = true;
             //this.harun.setY(625);
             this.harun.anims.play("runRight", true);
             
-            
-        
-
         }else {
         
         this.harun.setVelocityX(0);
         this.harun.anims.play("idle", true);
         //this.harun.setY(600);
-        console.log("Im Idle");
+        
        }
 
       if(this.keyboard.W.isDown && this.harun.body.touching.down){
         console.log("W was pushed");
-        this.harun.setVelocityY(-400);
+        this.harun.setVelocityY(-200);
     
       }
        
