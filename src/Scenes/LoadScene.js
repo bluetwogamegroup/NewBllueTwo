@@ -21,6 +21,8 @@ export class LoadScene extends Phaser.Scene{
 
         this.load.image("Level1Scene", "./assets/level.png");
 
+        
+
         //FOR SPRITESHEETS YOU HAVE TO GIVE IT THE HEIGHT AND FRAME OF ONE SPRITE ENGINE TAKES CARE OF THE REST
         this.load.spritesheet("RUN", "./assets/Haru'unRunningsword2.png", { //THE CAPITAL RUN HERE IS THE KEY WHICH WE USE TO REFER TO THIS SPRITESHEET
             frameHeight: 45,

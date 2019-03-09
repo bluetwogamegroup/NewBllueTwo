@@ -59,7 +59,9 @@ export class Level1 extends Phaser.Scene{
         });
         
         this.load.image("ground",  "./assets/ground.png");
+        this.load.image("saw", "./assets/saw.png");
     }
+   
     create() {
         
 
@@ -69,7 +71,7 @@ export class Level1 extends Phaser.Scene{
 
         this.add.image(0,0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
         
-        this.harun = this.physics.add.sprite(750,600, "idle");
+        this.harun = this.physics.add.sprite(630,360, "idle");
         
         this.harun.setCollideWorldBounds(true);
         
@@ -82,6 +84,11 @@ export class Level1 extends Phaser.Scene{
         this.cameras.main.startFollow(this.harun);//THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
         this.cameras.main.setFollowOffset(-300,200);
        
+        this.add.image(560,370,'saw').setScale(0.065).setDepth(1);
+        var saw = this.physics.add.staticGroup();
+        saw.create(560,370, 'saw').setScale(0.065).refreshBody();
+      //  this.path = new Phaser.Curves.Line(10, 20, 1,   )
+
         var platforms = this.physics.add.staticGroup();
     
         platforms.create(200,652, "ground").setScale(700,4).refreshBody();
@@ -143,9 +150,13 @@ export class Level1 extends Phaser.Scene{
         platforms.create(1200,260, 'ground').setScale(60,7).refreshBody();
         platforms.create(1175,496, 'ground').setScale(28,10).refreshBody();//Done
 
+        /*
+        var bombs = this.physics.add.group();
+        this.physics.add.collider(bombs, this.platforms);
+        this.physics.add.collider(this.harun, bombs, this.hitBomb, null, this);*/
 
 
-
+        
 
 
 
@@ -158,6 +169,12 @@ export class Level1 extends Phaser.Scene{
         this.harun.body.setSize(45,90,0,0);
         this.harun.setBounce(0.2);
         this.physics.add.collider(this.harun, platforms);
+        this.physics.world.addCollider(this.harun, this.saw);
+        this.physics.add.overlap(this.harun, saw, this.sawHit, null, this);
+    }
+    sawHit (harun, saw){
+    this.harun.disableBody(true, true);
+    console.log("DEAD");
     }
     update(delta) {
         
@@ -202,6 +219,7 @@ export class Level1 extends Phaser.Scene{
     
       }
        
+      
  
        
     }
