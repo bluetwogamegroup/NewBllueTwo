@@ -34,9 +34,9 @@ export class Level1 extends Phaser.Scene{
             key: "runRight", 
             frameRate: 7, 
             repeat: -1,
-            frames: this.anims.generateFrameNumbers("IDLE", {
-                //frames: [2,3,4,5,6,7]
-                frames: [0,1]
+            frames: this.anims.generateFrameNumbers("RUN", {
+                frames: [2,3,4,5,6,7]
+                //frames: [0,1]
             })
         });
         
@@ -50,15 +50,15 @@ export class Level1 extends Phaser.Scene{
         });
 
         this.anims.create({
-            key: "slash", 
+            key: "swing", 
             frameRate: 60, 
             repeat: -1,
-            frames: this.anims.generateFrameNumbers("SLASH", {
-                frames: [0,1,2,3,4,5,6,7,8]
+            frames: this.anims.generateFrameNumbers("SWING", {
+                frames: [1,2,3,4,5,6]
             })
         });
         
-        this.load.image("ground",  "./assets/ground.png");
+        this.load.image("ground2",  "./assets/ground2.png");
         this.load.image("saw", "./assets/saw.png");
     }
    
@@ -71,7 +71,7 @@ export class Level1 extends Phaser.Scene{
 
         this.add.image(0,0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
         
-        this.harun = this.physics.add.sprite(630,360, "idle");
+        this.harun = this.physics.add.sprite(200,360, "idle");
         
         this.harun.setCollideWorldBounds(true);
         
@@ -90,65 +90,67 @@ export class Level1 extends Phaser.Scene{
       //  this.path = new Phaser.Curves.Line(10, 20, 1,   )
 
         var platforms = this.physics.add.staticGroup();
-    
-        platforms.create(200,652, "ground").setScale(700,4).refreshBody();
-       // platforms.create(600, 400, "ground");
-        platforms.create(50, 250, "ground");
+        
+        //.refreshBody().setAlpha(0)
+
+        platforms.create(200,652, "ground2").setScale(700,4).refreshBody().setAlpha(0);
+       // platforms.create(600, 400, "ground2");
+        platforms.create(50, 250, "ground2");
         //adding new platforms~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LEFT TREE SIDE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        platforms.create(110,409, 'ground').setScale(20,4).refreshBody();//done need fine tunning
-        platforms.create(290,605, 'ground').setScale(55,5).refreshBody();//done need fine tunning
-      //  platforms.create(380,550, 'ground').setScale(20,4).refreshBody();//done need fine tunning
-        platforms.create(322,500, 'ground').setScale(28,4).refreshBody();//done 
-        platforms.create(240,480, 'ground').setScale(26,6).refreshBody();//done 
-        platforms.create(134,460, 'ground').setScale(47,4).refreshBody();//done 
-        platforms.create(110,300, 'ground').setScale(20,4).refreshBody();//done 
-        platforms.create(110,320, 'ground').setScale(20,4).refreshBody();//done 
-        platforms.create(110,350, 'ground').setScale(20,4).refreshBody();//done 
-        platforms.create(110,385, 'ground').setScale(20,4).refreshBody();//
-        platforms.create(10,407, 'ground').setScale(35,4).refreshBody();//
-        platforms.create(10,350, 'ground').setScale(35,4).refreshBody();//
-        platforms.create(10,285, 'ground').setScale(35,4).refreshBody();//
-        platforms.create(160,245, 'ground').setScale(15,4).refreshBody();//done need fine tunning
-        platforms.create(435,230, 'ground').setScale(260,30).refreshBody();//done need fine tunning
-       // platforms.create(530,455, 'ground').setScale(1,195).refreshBody();//done TREE LEFT SIDE LONG
-        platforms.create(738,184, 'ground').setScale(48,12).refreshBody();//done 
-        platforms.create(788,161, 'ground').setScale(12,11).refreshBody();//done 
-        platforms.create(810,142, 'ground').setScale(13,11).refreshBody();//done 
-        platforms.create(651,283, 'ground').setScale(1,20).refreshBody();//done need fine tunningd
-        platforms.create(710,320, 'ground').setScale(65,10).refreshBody();
-        platforms.create(651,348, 'ground').setScale(1,15).refreshBody();//vertical platform on the right side
-        platforms.create(792,297, 'ground').setScale(20,6).refreshBody();
-        platforms.create(852,285, 'ground').setScale(40,8).refreshBody();
-        //platforms.create(543,507, 'ground').setScale(1,140).refreshBody();
-       // platforms.create(645,518, 'ground').setScale(3,75).refreshBody();
-        platforms.create(670,425, 'ground').setScale(60,4).refreshBody();
-        platforms.create(767,407, 'ground').setScale(35,4).refreshBody();
-        platforms.create(825,403, 'ground').setScale(32,4).refreshBody();
-        platforms.create(893,383, 'ground').setScale(32,4).refreshBody();
-        platforms.create(972,367, 'ground').setScale(45,4).refreshBody();
+        platforms.create(110,409, 'ground2').setScale(20,4).refreshBody().setAlpha(0);//done need fine tunning
+        platforms.create(290,605, 'ground2').setScale(55,5).refreshBody().setAlpha(0);//done need fine tunning
+        platforms.create(380,550, 'ground2').setScale(20,4).refreshBody().setAlpha(0);//done need fine tunning
+        platforms.create(322,500, 'ground2').setScale(28,4).refreshBody().setAlpha(0);//done 
+        platforms.create(240,480, 'ground2').setScale(26,6).refreshBody().setAlpha(0);//done 
+        platforms.create(134,460, 'ground2').setScale(47,4).refreshBody().setAlpha(0);//done 
+        platforms.create(110,300, 'ground2').setScale(20,4).refreshBody().setAlpha(0);//done 
+        platforms.create(110,320, 'ground2').setScale(20,4).refreshBody().setAlpha(0);//done 
+        platforms.create(110,350, 'ground2').setScale(20,4).refreshBody().setAlpha(0);//done 
+        platforms.create(110,385, 'ground2').setScale(20,4).refreshBody().setAlpha(0);//
+        platforms.create(10,407, 'ground2').setScale(35,4).refreshBody().setAlpha(0);//
+        platforms.create(10,350, 'ground2').setScale(35,4).refreshBody().setAlpha(0);//
+        platforms.create(10,285, 'ground2').setScale(35,4).refreshBody().setAlpha(0);//
+        platforms.create(160,245, 'ground2').setScale(15,4).refreshBody().setAlpha(0);//done need fine tunning
+        platforms.create(435,230, 'ground2').setScale(260,30).refreshBody().setAlpha(0);//done need fine tunning
+        platforms.create(530,455, 'ground2').setScale(4,195).refreshBody().setAlpha(0);//done TREE LEFT SIDE LONG
+        platforms.create(738,184, 'ground2').setScale(48,12).refreshBody().setAlpha(0);//done 
+        platforms.create(788,161, 'ground2').setScale(12,11).refreshBody().setAlpha(0);//done 
+        platforms.create(810,142, 'ground2').setScale(13,11).refreshBody().setAlpha(0);//done 
+        platforms.create(651,283, 'ground2').setScale(1,20).refreshBody().setAlpha(0);//done need fine tunningd
+        platforms.create(710,320, 'ground2').setScale(65,10).refreshBody().setAlpha(0);
+        platforms.create(651,348, 'ground2').setScale(1,15).refreshBody().setAlpha(0);//vertical platform on the right side
+        platforms.create(792,297, 'ground2').setScale(20,6).refreshBody().setAlpha(0);
+        platforms.create(852,285, 'ground2').setScale(40,8).refreshBody().setAlpha(0);
+        platforms.create(543,507, 'ground2').setScale(1,140).refreshBody().setAlpha(0);
+        platforms.create(645,518, 'ground2').setScale(3,75).refreshBody().setAlpha(0);
+        platforms.create(670,425, 'ground2').setScale(60,4).refreshBody().setAlpha(0);
+        platforms.create(767,407, 'ground2').setScale(35,4).refreshBody().setAlpha(0);
+        platforms.create(825,403, 'ground2').setScale(32,4).refreshBody().setAlpha(0);
+        platforms.create(893,383, 'ground2').setScale(32,4).refreshBody().setAlpha(0);
+        platforms.create(972,367, 'ground2').setScale(45,4).refreshBody().setAlpha(0);
         //----------------------------------------TREE DONE---------------------------------------------------------------------------
 
         //---------------------------------------UNDER TOWER PART---------------------------------------------------------------------
-        platforms.create(932,676, 'ground').setScale(45,4).refreshBody();
-        platforms.create(985,703, 'ground').setScale(45,4).refreshBody();
-        platforms.create(1040,741, 'ground').setScale(45,10).refreshBody();
-        platforms.create(1116,765, 'ground').setScale(45,10).refreshBody();
-        platforms.create(1205,745, 'ground').setScale(45,25).refreshBody();
-        platforms.create(1140,656, 'ground').setScale(30,7).refreshBody();
-        platforms.create(2046,685, 'ground').setScale(800,35).refreshBody();
-        platforms.create(1235,700, 'ground').setScale(15,6).refreshBody();
-        platforms.create(1139,423, 'ground').setScale(4,227).refreshBody();
-        platforms.create(1263,423, 'ground').setScale(4,227).refreshBody();
+        platforms.create(932,676, 'ground2').setScale(45,4).refreshBody().setAlpha(0);
+        platforms.create(985,703, 'ground2').setScale(45,4).refreshBody().setAlpha(0);
+        platforms.create(1040,741, 'ground2').setScale(45,10).refreshBody().setAlpha(0);
+        platforms.create(1116,765, 'ground2').setScale(45,10).refreshBody().setAlpha(0);
+        platforms.create(1205,745, 'ground2').setScale(45,25).refreshBody().setAlpha(0);
+        platforms.create(1140,656, 'ground2').setScale(30,7).refreshBody().setAlpha(0);
+        platforms.create(2046,685, 'ground2').setScale(800,35).refreshBody().setAlpha(0);
+        platforms.create(1235,700, 'ground2').setScale(15,6).refreshBody().setAlpha(0);
+        platforms.create(1139,423, 'ground2').setScale(4,227).refreshBody().setAlpha(0);
+        platforms.create(1263,423, 'ground2').setScale(4,227).refreshBody().setAlpha(0);
 
         //--------------------------------------TOWER---------------------------------------------------------------------------------
-        platforms.create(1140,200, 'ground').setScale(43,10).refreshBody();
-        platforms.create(1269,200, 'ground').setScale(40,10).refreshBody();
-        platforms.create(1235,584, 'ground').setScale(25,10).refreshBody();
-        platforms.create(1235,430, 'ground').setScale(25,7).refreshBody();
-        platforms.create(1200,380, 'ground').setScale(60,7).refreshBody();
-        platforms.create(1200,315, 'ground').setScale(60,7).refreshBody();
-        platforms.create(1200,260, 'ground').setScale(60,7).refreshBody();
-        platforms.create(1175,496, 'ground').setScale(28,10).refreshBody();//Done
+        platforms.create(1140,200, 'ground2').setScale(43,10).refreshBody().setAlpha(0);
+        platforms.create(1269,200, 'ground2').setScale(40,10).refreshBody().setAlpha(0);
+        platforms.create(1235,584, 'ground2').setScale(25,10).refreshBody().setAlpha(0);
+        platforms.create(1235,430, 'ground2').setScale(25,7).refreshBody().setAlpha(0);
+        platforms.create(1200,380, 'ground2').setScale(60,7).refreshBody().setAlpha(0);
+        platforms.create(1200,315, 'ground2').setScale(60,7).refreshBody().setAlpha(0);
+        platforms.create(1200,260, 'ground2').setScale(60,7).refreshBody().setAlpha(0);
+        platforms.create(1175,496, 'ground2').setScale(28,10).refreshBody().setAlpha(0);//Done
 
         /*
         var bombs = this.physics.add.group();
@@ -166,8 +168,11 @@ export class Level1 extends Phaser.Scene{
         //  50, 25 is the X and Y offset of the newly sized box.
         
        
-        this.harun.body.setSize(45,90,0,0);
+        this.harun.body.setSize(45,45,0,0);
         this.harun.setBounce(0.2);
+        this.harun.body.checkCollision.up = false;
+        //this.harun.body.checkCollision.left = false;
+        //this.harun.body.checkCollision.right = false;
         this.physics.add.collider(this.harun, platforms);
         this.physics.world.addCollider(this.harun, this.saw);
         this.physics.add.overlap(this.harun, saw, this.sawHit, null, this);
@@ -189,6 +194,7 @@ export class Level1 extends Phaser.Scene{
 
             this.harun.setVelocityX(160);
             this.harun.flipX = false;
+            this.harun.setOffset(0,0);
             //this.harun.setY(625);
             
             this.harun.anims.play("runRight", true);
@@ -202,6 +208,7 @@ export class Level1 extends Phaser.Scene{
             console.log("a is down");
             this.harun.setVelocityX(-160);
             this.harun.flipX = true;
+            this.harun.setOffset(45,0);
             //this.harun.setY(625);
             this.harun.anims.play("runRight", true);
             
@@ -209,19 +216,27 @@ export class Level1 extends Phaser.Scene{
         
         this.harun.setVelocityX(0);
         this.harun.anims.play("idle", true);
+        this.harun.setOffset(0,0);
         //this.harun.setY(600);
         
        }
 
       if(this.keyboard.W.isDown && this.harun.body.touching.down){
         console.log("W was pushed");
-        this.harun.setVelocityY(-200);
+        this.harun.setVelocityY(-280);
     
       }
+       if(this.keyboard.S.isDown){
+        //this.harun.setOffset(113,86);
+        console.log("S was pushed");
+        this.harun.setVelocityX(0);
+        this.harun.anims.play("swing", true);
+      } 
        
       
  
        
+      
     }
 
     render() {

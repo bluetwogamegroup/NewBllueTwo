@@ -24,14 +24,15 @@ export class LoadScene extends Phaser.Scene{
         
 
         //FOR SPRITESHEETS YOU HAVE TO GIVE IT THE HEIGHT AND FRAME OF ONE SPRITE ENGINE TAKES CARE OF THE REST
-        this.load.spritesheet("RUN", "./assets/Haru'unRunningsword2.png", { //THE CAPITAL RUN HERE IS THE KEY WHICH WE USE TO REFER TO THIS SPRITESHEET
+        this.load.spritesheet("RUN", "./assets/Haru'unRunningsword.png", { //THE CAPITAL RUN HERE IS THE KEY WHICH WE USE TO REFER TO THIS SPRITESHEET
             frameHeight: 45,
             frameWidth: 90
         } );
+        
 
         this.load.spritesheet("IDLE", "./assets/IDLE.png", {
-            frameHeight: 90,
-            frameWidth: 90
+            frameHeight: 45,
+            frameWidth: 45
         } );
 
         this.load.spritesheet("BEAM", "./assets/HRBEAM.png", {
