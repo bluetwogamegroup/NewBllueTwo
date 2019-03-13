@@ -97,6 +97,10 @@ export class Level1 extends Phaser.Scene{
         this.add.image(560,370,'saw').setScale(0.065).setDepth(1);
         var saw = this.physics.add.staticGroup();
         saw.create(560,370, 'saw').setScale(0.065).refreshBody();
+
+        saw.create(1040,370, 'saw').setScale(0.1).refreshBody();
+        saw.create(1095,370, 'saw').setScale(0.1).refreshBody();
+        
       //  this.path = new Phaser.Curves.Line(10, 20, 1,   )
 
         var platforms = this.physics.add.staticGroup();
@@ -190,8 +194,8 @@ export class Level1 extends Phaser.Scene{
     sawHit (harun, saw){
     //this.harun.disableBody(true, true);
     console.log("DEAD");
-    this.harun.x = 200;
-    this.harun.y = 360;
+    this.harun.x = 100;
+    this.harun.y = 550;
   //  this.harun.disableBody(false, false);
     }
     update(delta) {
