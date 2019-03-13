@@ -14,12 +14,24 @@ export class LoadScene extends Phaser.Scene{
 
         //LOADING ALL THE ASSETS WE'RE GONNA USE
         this.load.image("TitleScreen", "./assets/TitleScreen.png");
+        this.load.image("OptionsScreen", "./assets/OptionsResumeBG.png");
 
         this.load.image("StartButton", "./assets/StartButton.png");
 
         this.load.image("OptionsButton", "./assets/OptionsButton.png");
 
+        this.load.image ("ReturnButton", "./assets/ReturnButton.png");
+
+        this.load.image("ResumeButton", "./assets/ResumeButton.png");
+
+        this.load.image("PauseButton", "./assets/PauseButton.png");
+
+        this.load.image("CheckRectangle", "./assets/CheckRec.png");
+
         this.load.image("Level1Scene", "./assets/level.png");
+
+
+        this.load.image("checked", "./assets/Check.png");
 
         
 
@@ -45,9 +57,9 @@ export class LoadScene extends Phaser.Scene{
             frameWidth: 250
         } );
 
-        this.load.spritesheet("SWING", "./assets/HRSWING.png", {
-            frameHeight: 86,
-            frameWidth: 113
+        this.load.spritesheet("SWING", "./assets/HRSWING2.png", {
+            frameHeight: 45,
+            frameWidth: 140
         } );
 
         //this is how you load the audio pretty simple, there are more options to play with it but its not our priority
@@ -68,15 +80,6 @@ export class LoadScene extends Phaser.Scene{
             progress - loader number progress in decimal
         */
 
-        //simulate large load THIS IS TO MAKE IT LOAD LONGER SO WE HAVE TIME TO LOAD THE ASSETS, so far i didnt see the need for it
-        /*
-        for(let i = 0; i < 100; i++){
-            this.load.spritesheet("HaruunRunning" + i, "./assets/Haru'unRunningsword2.png", {
-                frameHeight: 45,
-                frameWidth: 90
-            } );
-        }*/
-
         //WHILE ITS LOADING THIS IS WHAT ITS DISPLAYING ON THE SCREEN
         this.load.on("progress", (percent)=> {
             loadingBar.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * percent, 50);
@@ -90,6 +93,6 @@ export class LoadScene extends Phaser.Scene{
     }
 
     create(){
-        this.scene.start(CST.SCENES.MENU, "Hello From Load Scene"); //we load the menu scene and we send it data in this case a strin
+        this.scene.start(CST.SCENES.MENU); //we load the menu scene and we send it data in this case a strin
     }
 }

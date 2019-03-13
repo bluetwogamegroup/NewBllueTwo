@@ -51,7 +51,7 @@ export class Level1 extends Phaser.Scene{
 
         this.anims.create({
             key: "swing", 
-            frameRate: 60, 
+            frameRate: 15, 
             repeat: -1,
             frames: this.anims.generateFrameNumbers("SWING", {
                 frames: [1,2,3,4,5,6]
@@ -70,14 +70,24 @@ export class Level1 extends Phaser.Scene{
         
 
         this.add.image(0,0, "Level1Scene").setOrigin(0).setDepth(0); //setting the lvl 
+        this.pauseButton = this.physics.add.sprite(50, 700, "PauseButton").setOrigin(0).setDepth(1).setScale(0.5);
+        this.pauseButton.body.allowGravity = false;
+        this.pauseButton.setInteractive();
+
+        this.pauseButton.on("pointerup", ()=>{
+            console.log("clicked Pause");
+            this.scene.pause();
+            this.scene.launch(CST.SCENES.PAUSE);
+            //this.scene.start(CST.SCENES.MENU);
+        })
         
-        this.harun = this.physics.add.sprite(200,360, "idle");
+        this.harun = this.physics.add.sprite(100,550, "idle");
         
         this.harun.setCollideWorldBounds(true);
         
 
 
-        this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
+        this.keyboard = this.input.keyboard.addKeys("W, A, S, D, P");
         this.cameras.main.setBounds(0,0,2400,800);
         this.physics.world.setBounds(0,0,2400,800);
 
@@ -168,7 +178,7 @@ export class Level1 extends Phaser.Scene{
         //  50, 25 is the X and Y offset of the newly sized box.
         
        
-        this.harun.body.setSize(45,45,0,0);
+        this.harun.body.setSize(45,45,true);
         this.harun.setBounce(0.2);
         this.harun.body.checkCollision.up = false;
         //this.harun.body.checkCollision.left = false;
@@ -178,8 +188,11 @@ export class Level1 extends Phaser.Scene{
         this.physics.add.overlap(this.harun, saw, this.sawHit, null, this);
     }
     sawHit (harun, saw){
-    this.harun.disableBody(true, true);
+    //this.harun.disableBody(true, true);
     console.log("DEAD");
+    this.harun.x = 200;
+    this.harun.y = 360;
+  //  this.harun.disableBody(false, false);
     }
     update(delta) {
         
@@ -191,13 +204,14 @@ export class Level1 extends Phaser.Scene{
             console.log("d is down");
 
 
-
+            this.harun.body.setSize(45,45,true);
             this.harun.setVelocityX(160);
             this.harun.flipX = false;
             this.harun.setOffset(0,0);
+            this.pauseButton.x = this.harun.x;
             //this.harun.setY(625);
             
-            this.harun.anims.play("runRight", true);
+            this.harun.anims.play("runRight", true).setScale(1);
             
             
  
@@ -206,32 +220,69 @@ export class Level1 extends Phaser.Scene{
         else if (this.keyboard.A.isDown === true) {
 
             console.log("a is down");
+            this.harun.body.setSize(45,45,true);
             this.harun.setVelocityX(-160);
             this.harun.flipX = true;
             this.harun.setOffset(45,0);
+            this.pauseButton.x = this.harun.x;
             //this.harun.setY(625);
-            this.harun.anims.play("runRight", true);
+            this.harun.anims.play("runRight", true).setScale(1);
             
+        }
+        else if(this.keyboard.S.isDown ){
+
+ //Check for collision here with enemy
+
+            //this.harun.setOffset(45,45);
+            console.log("S was pushed");
+            if(this.harun.flipX){
+                this.harun.body.setSize(100,45,true).setOffset(0,0);
+                this.harun.setVelocityX(0);
+                this.harun.anims.play("swing", true).setScale(1);
+            }else{
+            this.harun.body.setSize(100,45,true).setOffset(45,0);
+            this.harun.setVelocityX(0);
+            this.harun.anims.play("swing", true).setScale(1);
+            }
         }else {
         
-        this.harun.setVelocityX(0);
-        this.harun.anims.play("idle", true);
-        this.harun.setOffset(0,0);
-        //this.harun.setY(600);
+            this.harun.setVelocityX(0);
+            this.harun.body.setSize(45,45,true);
+            this.harun.anims.play("idle", true).setScale(1);
+            this.harun.setOffset(0,0);
+            //this.harun.setY(600);
+            
+           }
+        /* if (this.keyboard.A.isDown && this.keyboard.S.isDown) {
+
+                console.log("a and s is down");
+                this.harun.setVelocityX(-160);
+                this.harun.flipX = true;
+                this.harun.setOffset(45,0);
+                
+                this.harun.anims.play("swing", true);
+        }
+        else if (this.keyboard.D.isDown && this.keyboard.S.isDown) {
+
+                console.log("d and s is down");
+                this.harun.setVelocityX(160);
+                this.harun.flipX = false;
+                
+                
+                this.harun.anims.play("swing", true);
+           
         
-       }
+                
+        } */
+
+ 
 
       if(this.keyboard.W.isDown && this.harun.body.touching.down){
         console.log("W was pushed");
-        this.harun.setVelocityY(-280);
+        this.harun.setVelocityY(-200);
     
       }
-       if(this.keyboard.S.isDown){
-        //this.harun.setOffset(113,86);
-        console.log("S was pushed");
-        this.harun.setVelocityX(0);
-        this.harun.anims.play("swing", true);
-      } 
+
        
       
  
