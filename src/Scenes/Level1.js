@@ -54,10 +54,19 @@ export class Level1 extends Phaser.Scene{
             frameRate: 15, 
             repeat: -1,
             frames: this.anims.generateFrameNumbers("SWING", {
-                frames: [1,2,3,4,5,6]
+                frames: [1,2,3,4,5]
             })
         });
         
+        this.anims.create({
+            key: "skeleton", 
+            frameRate: 15, 
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers("SKELLY", {
+                frames: [0,1,2,3,4,5,6]
+            })
+        });
+
         this.load.image("ground2",  "./assets/ground2.png");
         this.load.image("saw", "./assets/saw.png");
     }
@@ -93,6 +102,20 @@ export class Level1 extends Phaser.Scene{
 
         this.cameras.main.startFollow(this.harun);//THIS ONE LINE DOES THE FUCKING CAMERA THING IM GONNA KILL MYSELF
         this.cameras.main.setFollowOffset(-300,200);
+
+
+        var skel1;
+        
+        skel1 = this.physics.add.sprite(400,400, "SKELLY");
+        
+        skel1.body.setSize(120,120,true);
+        skel1.anims.play("skeleton", true).setScale(.5);
+        
+        
+
+        
+       // skel.create(400, 400, "skeleton");
+
        
         //this.add.image(545,367,'saw').setScale(0.065).setDepth(1);
         var saw = this.physics.add.staticGroup();
@@ -193,6 +216,10 @@ export class Level1 extends Phaser.Scene{
         this.physics.add.collider(this.harun, platforms);
         this.physics.world.addCollider(this.harun, this.saw);
         this.physics.add.overlap(this.harun, saw, this.sawHit, null, this);
+
+
+        this.physics.add.collider(skel1, platforms);
+
 
         
     }

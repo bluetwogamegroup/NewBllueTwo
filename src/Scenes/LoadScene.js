@@ -59,10 +59,17 @@ export class LoadScene extends Phaser.Scene{
             frameWidth: 250
         } );
 
-        this.load.spritesheet("SWING", "./assets/HRSWING2.png", {
+        this.load.spritesheet("SWING", "./assets/HRSWING.png", {
             frameHeight: 45,
-            frameWidth: 140
+            frameWidth: 90
         } );
+
+
+        this.load.spritesheet("SKELLY", "./assets/Skeleton2.png", {
+            frameHeight: 120,
+            frameWidth: 120
+        } );
+
 
         //this is how you load the audio pretty simple, there are more options to play with it but its not our priority
         this.load.audio("TitleScreenMusic", "./assets/TitleMusic.mp3");
@@ -75,6 +82,11 @@ export class LoadScene extends Phaser.Scene{
             }
 
         })
+
+
+
+
+        
 
         /*
         Loader Events:
