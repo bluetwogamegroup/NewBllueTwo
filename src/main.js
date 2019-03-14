@@ -1,9 +1,12 @@
-
+/** @type {import("../typings/phaser")} */
 import { LoadScene } from "./Scenes/LoadScene";
 import { MenuScene } from "./Scenes/MenuScene";
 import  { Level1 }  from "./Scenes/Level1";
 import  { PauseScene }  from "./Scenes/PauseScene";
-import  { OptionsScene }  from "./Scenes/OptionsScene";
+import   { OptionsScene }  from "./Scenes/OptionsScene"; 
+
+
+
 let game = new Phaser.Game({
     width: 800,
     height: 800,
