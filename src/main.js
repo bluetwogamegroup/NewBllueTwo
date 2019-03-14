@@ -1,9 +1,10 @@
+
+import { LoadScene } from "./Scenes/LoadScene.js";
+import { MenuScene } from "./Scenes/MenuScene.js";
+import  { Level1 }  from "./Scenes/Level1.js";
+import  { PauseScene }  from "./Scenes/PauseScene.js";
+import   { OptionsScene }  from "./Scenes/OptionsScene.js"; 
 /** @type {import("../typings/phaser")} */
-import { LoadScene } from "./Scenes/LoadScene";
-import { MenuScene } from "./Scenes/MenuScene";
-import  { Level1 }  from "./Scenes/Level1";
-import  { PauseScene }  from "./Scenes/PauseScene";
-import   { OptionsScene }  from "./Scenes/OptionsScene"; 
 
 
 
