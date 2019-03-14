@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "phaser": "^3.16.2"
-  },
-  "devDependencies": {
-    "typescript": "^3.3.3333"
-  }
-}
