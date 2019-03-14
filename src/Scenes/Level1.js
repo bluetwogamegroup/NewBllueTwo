@@ -54,7 +54,7 @@ export class Level1 extends Phaser.Scene{
             frameRate: 15, 
             repeat: -1,
             frames: this.anims.generateFrameNumbers("SWING", {
-                frames: [1,2,3,4,5,6]
+                frames: [1,2,3,4,5]
             })
         });
         
